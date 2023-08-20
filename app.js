@@ -101,7 +101,10 @@ function drawPlayer() {
   cells[playerIndex].classList.add("player");
 }
 function erasePlayer() {
-  cells[playerIndex].classList.remove("player");
+  cells[playerIndex].classList.remove("left");
+  cells[playerIndex].classList.remove("right");
+  cells[playerIndex].classList.remove("front");
+  cells[playerIndex].classList.remove("back");
 }
 
 drawPlayer();
@@ -112,21 +115,25 @@ document.addEventListener("keydown", function (key) {
     // Move left: A key
     case 65:
       playerIndex--;
+      cells[playerIndex].classList.add("left");
       break;
 
     // Move right: D key
     case 68:
       playerIndex++;
+      cells[playerIndex].classList.add("right");
       break;
 
     // Move down: S key
     case 83:
       playerIndex += width;
+      cells[playerIndex].classList.add("front");
       break;
 
     // Move up: W key
     case 87:
       playerIndex -= width;
+      cells[playerIndex].classList.add("back");
       break;
   }
   mapLocation();
