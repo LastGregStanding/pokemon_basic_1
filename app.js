@@ -4,7 +4,9 @@
 const grid = document.querySelector(".grid");
 const cells = [];
 const width = 15;
+let currentMap = 1;
 
+//#region maps
 const map1 = [
   0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2,
   2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -16,7 +18,6 @@ const map1 = [
   2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1,
   1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1,
 ];
-
 const map2 = [
   2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0,
   0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,
@@ -28,11 +29,7 @@ const map2 = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
-
-// player Index - 210;
-
-let currentMap = 1;
-
+//#endregion
 function createGrid() {
   for (let i = 0; i < 225; i++) {
     let cell = document.createElement("div");
@@ -63,40 +60,31 @@ function createGrid() {
           break;
       }
     }
-
     grid.appendChild(cell);
     cells.push(cell);
   }
 }
-
 createGrid();
 
 function deleteGrid() {
-  for (let i = 0; i < 225; i++) {
-    switch (cells[i]) {
-      case cells[i].classList.contains("road"):
-        cells[i].classList.remove("road");
-        break;
-      case cells[i].classList.contains("water"):
-        cells[i].classList.remove("water");
-        break;
-      case cells[i].classList.contains("grass"):
-        cells[i].classList.remove("grass");
-        break;
-    }
+  for (let i = 0; i > cells.length; i++) {
+    let cell = cells[i];
+    grid.removeChild(cell);
+    cells.shift(cell);
   }
+  console.log(cells);
 }
 let playerIndex = 159;
-
 function mapLocation() {
   if (playerIndex === 219) {
     deleteGrid();
     currentMap = 2;
-    createGrid();
     playerIndex -= 210;
+    createGrid();
   }
 }
 
+//#region draw player
 function drawPlayer() {
   cells[playerIndex].classList.add("player");
 }
@@ -106,8 +94,7 @@ function erasePlayer() {
   cells[playerIndex].classList.remove("front");
   cells[playerIndex].classList.remove("back");
 }
-
-drawPlayer();
+//#endregion
 
 document.addEventListener("keydown", function (key) {
   erasePlayer();
@@ -137,7 +124,6 @@ document.addEventListener("keydown", function (key) {
       break;
   }
   mapLocation();
-  drawPlayer();
 });
 // #endregion
 
