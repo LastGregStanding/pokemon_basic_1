@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Basic</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="title">Pokemon</header>
+    <!-- Pokemon Battle -->
+    <div class="battle_container">
+      <div class="characters">
+        <!-- Player Info -->
+        <div class="character_info" id="player_info">
+          <div>Player 1</div>
+          <div class="name">
+            <div>Name:</div>
+            <div id="player_name">Pikachu</div>
+          </div>
+          <div class="type">
+            <div>Type:</div>
+            <div id="player_type">Electric</div>
+          </div>
+          <div class="level">
+            <div>Level:</div>
+            <div id="player_level">10</div>
+          </div>
+          <div class="level_up">
+            <div>Level Up:</div>
+            <div id="player_level_up">15/20</div>
+          </div>
+          <div class="health">
+            <div>Health:</div>
+            <div id="player_health">100/100</div>
+          </div>
+          <br />
+        </div>
+
+        <!-- Enemy Info -->
+        <div class="character_info" id="enemy_info">
+          <div>Enemy</div>
+          <div class="name">
+            <div>Name:</div>
+            <div id="enemy_name">Ekans</div>
+          </div>
+          <div class="type">
+            <div>Type:</div>
+            <div id="enemy_type">Poison</div>
+          </div>
+          <div class="level">
+            <div>Level:</div>
+            <div id="enemy_level">10</div>
+          </div>
+          <div class="health">
+            <div>Health:</div>
+            <div id="enemy_health">100/100</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Naration and Moves -->
+      <div class="gameplay">
+        <ul class="moves">
+          <div id="player_moves">Moves</div>
+          <li class="move">Quick Attack</li>
+          <li class="move">Spark</li>
+          <li class="move">Thunder</li>
+          <li class="move">Reflex</li>
+        </ul>
+        <div class="narration">What will pikachu do?</div>
+      </div>
+
+      <div class="options">
+        <div class="option" id="switch_pokemon">Switch Pokemon</div>
+        <div class="option" id="items">Items</div>
+        <div class="option" id="capture">Capture</div>
+        <div class="option" id="run">Run</div>
+      </div>
+    </div>
+    <!-- Pokemon Map -->
+    <div class="grid"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
