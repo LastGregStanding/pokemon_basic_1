@@ -63,6 +63,7 @@ function createGrid() {
           break;
       }
     }
+
     grid.appendChild(cell);
     cells.push(cell);
   }
@@ -72,9 +73,17 @@ createGrid();
 
 function deleteGrid() {
   for (let i = 0; i < 225; i++) {
-    cells[i].classList.remove("road");
-    cells[i].classList.remove("water");
-    cells[i].classList.remove("grass");
+    switch (cells[i]) {
+      case cells[i].classList.contains("road"):
+        cells[i].classList.remove("road");
+        break;
+      case cells[i].classList.contains("water"):
+        cells[i].classList.remove("water");
+        break;
+      case cells[i].classList.contains("grass"):
+        cells[i].classList.remove("grass");
+        break;
+    }
   }
 }
 let playerIndex = 159;

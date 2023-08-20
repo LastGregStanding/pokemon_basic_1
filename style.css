@@ -33,10 +33,13 @@
 
 .road {
   background-color: brown;
+  /* border: solid red 1px; */
 }
 
 .player {
-  background-color: white;
+  background-image: url(pokemon/ash.png);
+  background-position: center;
+  background-size: cover;
 }
 
 .battle_container {
