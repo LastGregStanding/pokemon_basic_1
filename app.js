@@ -4,10 +4,22 @@
 const grid = document.querySelector(".grid");
 const cells = [];
 const width = 15;
-let currentMap = 1;
+let currentMap = 2;
 
 //#region maps
 const map1 = [
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0,
+  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+];
+
+const map2 = [
   0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2,
   2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -18,7 +30,8 @@ const map1 = [
   2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1,
   1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1,
 ];
-const map2 = [
+
+const map3 = [
   2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0,
   0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,
   2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2,
@@ -34,19 +47,6 @@ function createGrid() {
   for (let i = 0; i < 225; i++) {
     let cell = document.createElement("div");
     cell.classList.add("cell");
-    if (currentMap === 1) {
-      switch (map1[i]) {
-        case 0:
-          cell.classList.add("road");
-          break;
-        case 1:
-          cell.classList.add("water");
-          break;
-        case 2:
-          cell.classList.add("grass");
-          break;
-      }
-    }
     if (currentMap === 2) {
       switch (map2[i]) {
         case 0:
@@ -67,22 +67,81 @@ function createGrid() {
 createGrid();
 
 function deleteGrid() {
-  for (let i = 0; i > cells.length; i++) {
-    let cell = cells[i];
-    grid.removeChild(cell);
-    cells.shift(cell);
+  if (currentMap === 1) {
+    for (let i = 0; i < 225; i++) {
+      cells[i].classList.remove("water");
+      cells[i].classList.remove("grass");
+      cells[i].classList.remove("road");
+      cells[i].classList.remove("cell");
+      grid.removeChild(cells[i]);
+      switch (map1[i]) {
+        case 0:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("road");
+          break;
+        case 1:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("water");
+          break;
+        case 2:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("grass");
+          break;
+      }
+      grid.appendChild(cells[i]);
+    }
   }
-  console.log(cells);
+  if (currentMap === 2) {
+    for (let i = 0; i < 225; i++) {
+      cells[i].classList.remove("water");
+      cells[i].classList.remove("grass");
+      cells[i].classList.remove("road");
+      cells[i].classList.remove("cell");
+      grid.removeChild(cells[i]);
+      switch (map2[i]) {
+        case 0:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("road");
+          break;
+        case 1:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("water");
+          break;
+        case 2:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("grass");
+          break;
+      }
+      grid.appendChild(cells[i]);
+    }
+  }
+  if (currentMap === 3) {
+    for (let i = 0; i < 225; i++) {
+      cells[i].classList.remove("water");
+      cells[i].classList.remove("grass");
+      cells[i].classList.remove("road");
+      cells[i].classList.remove("cell");
+      grid.removeChild(cells[i]);
+      switch (map3[i]) {
+        case 0:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("road");
+          break;
+        case 1:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("water");
+          break;
+        case 2:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("grass");
+          break;
+      }
+      grid.appendChild(cells[i]);
+    }
+  }
 }
+
 let playerIndex = 159;
-function mapLocation() {
-  if (playerIndex === 219) {
-    deleteGrid();
-    currentMap = 2;
-    playerIndex -= 210;
-    createGrid();
-  }
-}
 
 //#region draw player
 function drawPlayer() {
@@ -114,16 +173,33 @@ document.addEventListener("keydown", function (key) {
     // Move down: S key
     case 83:
       playerIndex += width;
+      if (playerIndex >= 225 && currentMap === 2) {
+        currentMap = 3;
+        deleteGrid();
+        playerIndex -= 224;
+      } else if (playerIndex >= 225 && currentMap === 1) {
+        currentMap = 2;
+        deleteGrid();
+        playerIndex -= 224;
+      }
       cells[playerIndex].classList.add("front");
       break;
 
     // Move up: W key
     case 87:
       playerIndex -= width;
+      if (playerIndex <= 0 && currentMap === 2) {
+        currentMap = 1;
+        deleteGrid();
+        playerIndex += 224;
+      } else if (playerIndex <= 0 && currentMap === 3) {
+        currentMap = 2;
+        deleteGrid();
+        playerIndex += 224;
+      }
       cells[playerIndex].classList.add("back");
       break;
   }
-  mapLocation();
 });
 // #endregion
 
