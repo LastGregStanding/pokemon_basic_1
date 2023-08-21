@@ -1,5 +1,9 @@
 "use strict";
 
+// music
+const themeMusic = document.querySelector("#theme_music");
+const battleMusic = document.querySelector("#battle_music");
+
 //#region walk around map
 const grid = document.querySelector(".grid");
 const cells = [];
@@ -159,22 +163,24 @@ function erasePlayer() {
 cells[playerIndex].classList.add("front");
 
 document.addEventListener("keydown", function (key) {
-  erasePlayer();
   switch (key.keyCode) {
     // Move left: A key
     case 65:
+      erasePlayer();
       playerIndex--;
       cells[playerIndex].classList.add("left");
       break;
 
     // Move right: D key
     case 68:
+      erasePlayer();
       playerIndex++;
       cells[playerIndex].classList.add("right");
       break;
 
     // Move down: S key
     case 83:
+      erasePlayer();
       playerIndex += width;
       if (playerIndex >= 225 && currentMap === 2) {
         currentMap = 3;
@@ -190,6 +196,7 @@ document.addEventListener("keydown", function (key) {
 
     // Move up: W key
     case 87:
+      erasePlayer();
       playerIndex -= width;
       if (playerIndex < 0 && currentMap === 2) {
         currentMap = 1;
@@ -201,6 +208,13 @@ document.addEventListener("keydown", function (key) {
         playerIndex += 224;
       }
       cells[playerIndex].classList.add("back");
+      break;
+
+    case 77:
+      themeMusic.play();
+      break;
+    case 81:
+      themeMusic.pause();
       break;
   }
   diceRoll = rollDice();
@@ -217,6 +231,8 @@ function checkForPlayer() {
     wildEnemy === 5 &&
     cells[playerIndex].classList.contains("grass")
   ) {
+    themeMusic.pause();
+    battleMusic.play();
     battle.showModal();
   }
 }
