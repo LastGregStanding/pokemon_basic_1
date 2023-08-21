@@ -278,6 +278,9 @@ document.addEventListener("keydown", function (key) {
         }
         erasePlayer();
         playerIndex--;
+        if (cells[playerIndex].classList.contains("water")) {
+          playerIndex++;
+        }
         cells[playerIndex].classList.add("left");
       }
       break;
@@ -301,6 +304,9 @@ document.addEventListener("keydown", function (key) {
         }
         erasePlayer();
         playerIndex++;
+        if (cells[playerIndex].classList.contains("water")) {
+          playerIndex--;
+        }
         cells[playerIndex].classList.add("right");
       }
       break;

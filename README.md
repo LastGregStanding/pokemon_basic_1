@@ -9,3 +9,5 @@ creating a basic pokemon game
 -figured out how to switch the maps, and I did it all on my own!
 
 -Having trouble changing the maps to the left and right. As of now, I have the up and down maps working properly.
+
+-Bug: cannot figure out how to prevent going into the water when moving up or down, while also being able to switch maps for up and down
