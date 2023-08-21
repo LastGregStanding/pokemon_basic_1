@@ -166,48 +166,56 @@ document.addEventListener("keydown", function (key) {
   switch (key.keyCode) {
     // Move left: A key
     case 65:
-      erasePlayer();
-      playerIndex--;
-      cells[playerIndex].classList.add("left");
+      if (!battle.classList.contains("in_battle")) {
+        erasePlayer();
+        playerIndex--;
+        cells[playerIndex].classList.add("left");
+      }
       break;
 
     // Move right: D key
     case 68:
-      erasePlayer();
-      playerIndex++;
-      cells[playerIndex].classList.add("right");
+      if (!battle.classList.contains("in_battle")) {
+        erasePlayer();
+        playerIndex++;
+        cells[playerIndex].classList.add("right");
+      }
       break;
 
     // Move down: S key
     case 83:
-      erasePlayer();
-      playerIndex += width;
-      if (playerIndex >= 225 && currentMap === 2) {
-        currentMap = 3;
-        deleteGrid();
-        playerIndex -= 224;
-      } else if (playerIndex >= 225 && currentMap === 1) {
-        currentMap = 2;
-        deleteGrid();
-        playerIndex -= 225;
+      if (!battle.classList.contains("in_battle")) {
+        erasePlayer();
+        playerIndex += width;
+        if (playerIndex >= 225 && currentMap === 2) {
+          currentMap = 3;
+          deleteGrid();
+          playerIndex -= 224;
+        } else if (playerIndex >= 225 && currentMap === 1) {
+          currentMap = 2;
+          deleteGrid();
+          playerIndex -= 225;
+        }
+        cells[playerIndex].classList.add("front");
       }
-      cells[playerIndex].classList.add("front");
       break;
 
     // Move up: W key
     case 87:
-      erasePlayer();
-      playerIndex -= width;
-      if (playerIndex < 0 && currentMap === 2) {
-        currentMap = 1;
-        deleteGrid();
-        playerIndex += 225;
-      } else if (playerIndex <= 0 && currentMap === 3) {
-        currentMap = 2;
-        deleteGrid();
-        playerIndex += 224;
+      if (!battle.classList.contains("in_battle")) {
+        erasePlayer();
+        playerIndex -= width;
+        if (playerIndex < 0 && currentMap === 2) {
+          currentMap = 1;
+          deleteGrid();
+          playerIndex += 225;
+        } else if (playerIndex <= 0 && currentMap === 3) {
+          currentMap = 2;
+          deleteGrid();
+          playerIndex += 224;
+        }
+        cells[playerIndex].classList.add("back");
       }
-      cells[playerIndex].classList.add("back");
       break;
 
     case 77:
@@ -234,8 +242,21 @@ function checkForPlayer() {
     themeMusic.pause();
     battleMusic.play();
     battle.showModal();
+    battle.classList.add("in_battle");
   }
 }
+
+//#region run
+const run = document.querySelector("#run");
+run.addEventListener("click", function () {
+  battleMusic.pause();
+  battleMusic.currentTime = 0;
+  themeMusic.currentTime = 0;
+  themeMusic.play();
+  battle.classList.remove("in_battle");
+  battle.close();
+});
+//#endregion
 
 //#region Pokemon Index
 class Pokemon {
