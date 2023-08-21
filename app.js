@@ -178,6 +178,30 @@ function drawNextMap() {
       grid.appendChild(cells[i]);
     }
   }
+  if (currentMap === 4) {
+    for (let i = 0; i < 225; i++) {
+      cells[i].classList.remove("water");
+      cells[i].classList.remove("grass");
+      cells[i].classList.remove("road");
+      cells[i].classList.remove("cell");
+      grid.removeChild(cells[i]);
+      switch (map4[i]) {
+        case 0:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("road");
+          break;
+        case 1:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("water");
+          break;
+        case 2:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("grass");
+          break;
+      }
+      grid.appendChild(cells[i]);
+    }
+  }
 }
 //#endregion
 
@@ -206,6 +230,12 @@ document.addEventListener("keydown", function (key) {
         playerIndex--;
         cells[playerIndex].classList.add("left");
       }
+      // Map 4 > 3
+      if (playerIndex % width === 0 && currentMap === 4) {
+        currentMap = 2;
+        drawNextMap();
+        playerIndex += width;
+      }
       break;
 
     // Move right: D key
@@ -214,6 +244,12 @@ document.addEventListener("keydown", function (key) {
         erasePlayer();
         playerIndex++;
         cells[playerIndex].classList.add("right");
+      }
+      // Map 2 > 4
+      if (playerIndex % width === 0 && currentMap === 2) {
+        currentMap = 4;
+        drawNextMap();
+        playerIndex -= 15;
       }
       break;
 
