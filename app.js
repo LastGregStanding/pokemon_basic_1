@@ -5,6 +5,7 @@ const grid = document.querySelector(".grid");
 const cells = [];
 const width = 15;
 let currentMap = 2;
+let wildEnemy = 5;
 
 //#region maps
 const map1 = [
@@ -155,6 +156,8 @@ function erasePlayer() {
 }
 //#endregion
 
+cells[playerIndex].classList.add("front");
+
 document.addEventListener("keydown", function (key) {
   erasePlayer();
   switch (key.keyCode) {
@@ -180,7 +183,7 @@ document.addEventListener("keydown", function (key) {
       } else if (playerIndex >= 225 && currentMap === 1) {
         currentMap = 2;
         deleteGrid();
-        playerIndex -= 224;
+        playerIndex -= 225;
       }
       cells[playerIndex].classList.add("front");
       break;
@@ -188,10 +191,10 @@ document.addEventListener("keydown", function (key) {
     // Move up: W key
     case 87:
       playerIndex -= width;
-      if (playerIndex <= 0 && currentMap === 2) {
+      if (playerIndex < 0 && currentMap === 2) {
         currentMap = 1;
         deleteGrid();
-        playerIndex += 224;
+        playerIndex += 225;
       } else if (playerIndex <= 0 && currentMap === 3) {
         currentMap = 2;
         deleteGrid();
@@ -200,8 +203,23 @@ document.addEventListener("keydown", function (key) {
       cells[playerIndex].classList.add("back");
       break;
   }
+  diceRoll = rollDice();
+  checkForPlayer();
 });
 // #endregion
+
+let diceRoll;
+let rollDice = () => Math.floor(Math.random() * 10);
+
+function checkForPlayer() {
+  if (
+    diceRoll === 5 &&
+    wildEnemy === 5 &&
+    cells[playerIndex].classList.contains("grass")
+  ) {
+    battle.showModal();
+  }
+}
 
 //#region Pokemon Index
 class Pokemon {
@@ -239,6 +257,7 @@ const pokemons = [charmander, arbok, ekans];
 
 const move = document.querySelectorAll(".move");
 const option = document.querySelectorAll(".option");
+const battle = document.querySelector(".battle_container");
 
 //#region UI hovering
 move.forEach((move) => {
