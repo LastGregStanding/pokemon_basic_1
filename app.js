@@ -1,17 +1,34 @@
 "use strict";
 
-// music
-const themeMusic = document.querySelector("#theme_music");
-const battleMusic = document.querySelector("#battle_music");
-
-//#region walk around map
 const grid = document.querySelector(".grid");
 const cells = [];
 const width = 15;
 let currentMap = 2;
 let wildEnemy = 5;
 
-//#region maps
+//#region music
+const themeMusic = document.querySelector("#theme_music");
+const battleMusic = document.querySelector("#battle_music");
+let mute = true;
+
+// trigger music
+document.addEventListener("keydown", function (key) {
+  switch (key.keyCode) {
+    // key 'm' to unmute
+    case 77:
+      mute = mute === true ? false : true;
+      themeMusic.play();
+      break;
+    // key 'q' to mute
+    case 81:
+      themeMusic.pause();
+      break;
+  }
+});
+//#endregion
+
+//#region map layouts
+
 const map1 = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -48,6 +65,10 @@ const map3 = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 //#endregion
+
+//#region draw maps and game
+
+// draw the first map in the game
 function createGrid() {
   for (let i = 0; i < 225; i++) {
     let cell = document.createElement("div");
@@ -71,7 +92,8 @@ function createGrid() {
 }
 createGrid();
 
-function deleteGrid() {
+// function to draw a new map
+function drawNextMap() {
   if (currentMap === 1) {
     for (let i = 0; i < 225; i++) {
       cells[i].classList.remove("water");
@@ -145,10 +167,10 @@ function deleteGrid() {
     }
   }
 }
-
-let playerIndex = 159;
+//#endregion
 
 //#region draw player
+let playerIndex = 159;
 function drawPlayer() {
   cells[playerIndex].classList.add("player");
 }
@@ -158,11 +180,12 @@ function erasePlayer() {
   cells[playerIndex].classList.remove("front");
   cells[playerIndex].classList.remove("back");
 }
+cells[playerIndex].classList.add("front");
 //#endregion
 
-cells[playerIndex].classList.add("front");
-
+//#region Main Gameplay
 document.addEventListener("keydown", function (key) {
+  // Move player around map with keys (and switch maps)
   switch (key.keyCode) {
     // Move left: A key
     case 65:
@@ -187,13 +210,17 @@ document.addEventListener("keydown", function (key) {
       if (!battle.classList.contains("in_battle")) {
         erasePlayer();
         playerIndex += width;
+
+        // Map 2 > 3
         if (playerIndex >= 225 && currentMap === 2) {
           currentMap = 3;
-          deleteGrid();
+          drawNextMap();
           playerIndex -= 224;
+
+          // Map 1 > 2
         } else if (playerIndex >= 225 && currentMap === 1) {
           currentMap = 2;
-          deleteGrid();
+          drawNextMap();
           playerIndex -= 225;
         }
         cells[playerIndex].classList.add("front");
@@ -205,57 +232,63 @@ document.addEventListener("keydown", function (key) {
       if (!battle.classList.contains("in_battle")) {
         erasePlayer();
         playerIndex -= width;
+
+        // Map 2 > 1
         if (playerIndex < 0 && currentMap === 2) {
           currentMap = 1;
-          deleteGrid();
+          drawNextMap();
           playerIndex += 225;
+
+          // Map 3 > 2
         } else if (playerIndex <= 0 && currentMap === 3) {
           currentMap = 2;
-          deleteGrid();
+          drawNextMap();
           playerIndex += 224;
         }
         cells[playerIndex].classList.add("back");
       }
       break;
-
-    case 77:
-      themeMusic.play();
-      break;
-    case 81:
-      themeMusic.pause();
-      break;
   }
+  // Roll dice for wild enemy after every step in the grass
   diceRoll = rollDice();
   checkForPlayer();
 });
+
+//#region run from enemy
+const run = document.querySelector("#run");
+run.addEventListener("click", function () {
+  battleMusic.currentTime = 0;
+  themeMusic.currentTime = 0;
+  battle.classList.remove("in_battle");
+  battle.close();
+  if (mute === false) {
+    battleMusic.pause();
+    themeMusic.play();
+  }
+});
+//#endregion
 // #endregion
 
+//#region Random chance to encounter enemy
+// roll dice to see random enemy
 let diceRoll;
 let rollDice = () => Math.floor(Math.random() * 10);
 
+// check for enemy in grass
 function checkForPlayer() {
   if (
     diceRoll === 5 &&
     wildEnemy === 5 &&
     cells[playerIndex].classList.contains("grass")
   ) {
-    themeMusic.pause();
-    battleMusic.play();
+    if (mute === false) {
+      themeMusic.pause();
+      battleMusic.play();
+    }
     battle.showModal();
     battle.classList.add("in_battle");
   }
 }
-
-//#region run
-const run = document.querySelector("#run");
-run.addEventListener("click", function () {
-  battleMusic.pause();
-  battleMusic.currentTime = 0;
-  themeMusic.currentTime = 0;
-  themeMusic.play();
-  battle.classList.remove("in_battle");
-  battle.close();
-});
 //#endregion
 
 //#region Pokemon Index
