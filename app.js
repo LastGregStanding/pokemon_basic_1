@@ -32,25 +32,25 @@ document.addEventListener("keydown", function (key) {
 const map1 = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1,
-  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 2, 2, 2,
-  2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0,
-  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-  2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
+  0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 ];
 
 const map2 = [
-  0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2,
-  2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
+  2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1,
-  1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0,
-  0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
-  2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2,
-  2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1,
-  1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+  0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1,
+  1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 1, 1,
 ];
 
 const map3 = [
@@ -75,6 +75,18 @@ const map4 = [
   0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+];
+
+const map5 = [
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 ];
 //#endregion
 
@@ -202,11 +214,35 @@ function drawNextMap() {
       grid.appendChild(cells[i]);
     }
   }
+  if (currentMap === 5) {
+    for (let i = 0; i < 225; i++) {
+      cells[i].classList.remove("water");
+      cells[i].classList.remove("grass");
+      cells[i].classList.remove("road");
+      cells[i].classList.remove("cell");
+      grid.removeChild(cells[i]);
+      switch (map5[i]) {
+        case 0:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("road");
+          break;
+        case 1:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("water");
+          break;
+        case 2:
+          cells[i].classList.add("cell");
+          cells[i].classList.add("grass");
+          break;
+      }
+      grid.appendChild(cells[i]);
+    }
+  }
 }
 //#endregion
 
 //#region draw player
-let playerIndex = 159;
+let playerIndex = 160;
 function drawPlayer() {
   cells[playerIndex].classList.add("player");
 }
@@ -226,30 +262,46 @@ document.addEventListener("keydown", function (key) {
     // Move left: A key
     case 65:
       if (!battle.classList.contains("in_battle")) {
+        // Map 2 > 5
+        if (playerIndex % width === 0 && currentMap === 2) {
+          currentMap = 5;
+          drawNextMap();
+          erasePlayer();
+          playerIndex += width;
+        }
+        // Map 4 > 2
+        if (playerIndex % width === 0 && currentMap === 4) {
+          currentMap = 2;
+          drawNextMap();
+          erasePlayer();
+          playerIndex += width;
+        }
         erasePlayer();
         playerIndex--;
         cells[playerIndex].classList.add("left");
-      }
-      // Map 4 > 3
-      if (playerIndex % width === 0 && currentMap === 4) {
-        currentMap = 2;
-        drawNextMap();
-        playerIndex += width;
       }
       break;
 
     // Move right: D key
     case 68:
       if (!battle.classList.contains("in_battle")) {
+        // Map 2 > 4, middle to right map
+        if ((playerIndex + 1) % width === 0 && currentMap === 2) {
+          currentMap = 4;
+          drawNextMap();
+          erasePlayer();
+          playerIndex -= width;
+        }
+        // Map 5 > 2
+        if ((playerIndex + 1) % width === 0 && currentMap === 5) {
+          currentMap = 2;
+          drawNextMap();
+          erasePlayer();
+          playerIndex -= width;
+        }
         erasePlayer();
         playerIndex++;
         cells[playerIndex].classList.add("right");
-      }
-      // Map 2 > 4
-      if (playerIndex % width === 0 && currentMap === 2) {
-        currentMap = 4;
-        drawNextMap();
-        playerIndex -= 15;
       }
       break;
 
@@ -263,7 +315,7 @@ document.addEventListener("keydown", function (key) {
         if (playerIndex >= 225 && currentMap === 2) {
           currentMap = 3;
           drawNextMap();
-          playerIndex -= 224;
+          playerIndex -= 225;
 
           // Map 1 > 2
         } else if (playerIndex >= 225 && currentMap === 1) {
@@ -291,7 +343,7 @@ document.addEventListener("keydown", function (key) {
         } else if (playerIndex <= 0 && currentMap === 3) {
           currentMap = 2;
           drawNextMap();
-          playerIndex += 224;
+          playerIndex += 225;
         }
         cells[playerIndex].classList.add("back");
       }
