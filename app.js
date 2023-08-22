@@ -482,6 +482,7 @@ itemReturn.addEventListener("click", () => itemListMenu.close());
 
 //#endregion
 
+//#region pokemon list
 const pokemonListMenu = document.querySelector(".pokemon-list-menu");
 const switchPokemon = document.querySelector("#switch_pokemon");
 const pokemonReturn = document.querySelector(".pokemon-return");
@@ -501,3 +502,5 @@ pokemonReturn.addEventListener("mouseover", () =>
 pokemonReturn.addEventListener("mouseout", () =>
   pokemonReturn.classList.remove("hover")
 );
+
+//#endregion
