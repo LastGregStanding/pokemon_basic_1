@@ -22,6 +22,33 @@
 
     <!-- Pokemon Battle -->
     <dialog class="battle_container">
+      <!-- Item list -->
+      <dialog class="item-list-menu">
+        <ul class="item-list">
+          <header id="item-title">Items</header>
+          <li class="item" id="elixers">
+            Elixer
+            <p id="elixer-amount">0x</p>
+          </li>
+          <li class="item" id="pokeballs">
+            Pokeballs
+            <p id="pokeballs-amount">0x</p>
+          </li>
+          <p class="item-return">Return</p>
+        </ul>
+      </dialog>
+
+      <!-- Pokemon list -->
+      <dialog class="pokemon-list-menu">
+        <ul class="pokemon-list">
+          <header id="pokemon-title">Your Pokemon</header>
+          <li class="pokemon">Pikachu</li>
+          <li class="pokemon">Charmander</li>
+          <p class="pokemon-return">Return</p>
+        </ul>
+      </dialog>
+
+      <!-- Battle Page -->
       <div class="characters">
         <!-- Player Info -->
         <div class="character_info" id="player_info">
@@ -90,6 +117,7 @@
         <div class="option" id="run">Run</div>
       </div>
     </dialog>
+
     <!-- Pokemon Map -->
     <div class="grid"></div>
     <script src="app.js"></script>

@@ -457,3 +457,47 @@ option.forEach((option) => {
 
 let currentEnemy;
 let enemyHealth = 100;
+
+//#region items
+
+const itemListMenu = document.querySelector(".item-list-menu");
+const item = document.querySelectorAll(".item");
+const itemsBattle = document.querySelector("#items");
+const itemReturn = document.querySelector(".item-return");
+
+item.forEach((item) => {
+  item.addEventListener("mouseover", () => item.classList.add("hover"));
+  item.addEventListener("mouseout", () => item.classList.remove("hover"));
+});
+
+itemReturn.addEventListener("mouseover", () =>
+  itemReturn.classList.add("hover")
+);
+itemReturn.addEventListener("mouseout", () =>
+  itemReturn.classList.remove("hover")
+);
+
+itemsBattle.addEventListener("click", () => itemListMenu.showModal());
+itemReturn.addEventListener("click", () => itemListMenu.close());
+
+//#endregion
+
+const pokemonListMenu = document.querySelector(".pokemon-list-menu");
+const switchPokemon = document.querySelector("#switch_pokemon");
+const pokemonReturn = document.querySelector(".pokemon-return");
+const pokemon = document.querySelectorAll(".pokemon");
+
+switchPokemon.addEventListener("click", () => pokemonListMenu.showModal());
+pokemonReturn.addEventListener("click", () => pokemonListMenu.close());
+
+pokemon.forEach((pokemon) => {
+  pokemon.addEventListener("mouseover", () => pokemon.classList.add("hover"));
+  pokemon.addEventListener("mouseout", () => pokemon.classList.remove("hover"));
+});
+
+pokemonReturn.addEventListener("mouseover", () =>
+  pokemonReturn.classList.add("hover")
+);
+pokemonReturn.addEventListener("mouseout", () =>
+  pokemonReturn.classList.remove("hover")
+);
