@@ -1,10 +1,50 @@
 "use strict";
 
+//#region Pokemon Index
+class Pokemon {
+  constructor(name, type, level, moves) {
+    this.name = name;
+    this.type = type;
+    this.level = level;
+    this.moves = moves;
+  }
+}
+
+const pikachu = new Pokemon("Pikachu", "Electric", 10, {
+  moveone: "quick attack",
+  movetwo: "spark",
+  movethree: "thunder",
+  movefour: "reflex",
+});
+
+const charmander = new Pokemon("Charmander", "Fire", 12, {
+  moveone: "scratch",
+  movetwo: "burn",
+  movethree: "shield",
+  movefour: "blast",
+});
+
+const arbok = new Pokemon("Arbok", "Snake", 8, {
+  moveone: "bite",
+  movetwo: "coil",
+  movethree: "poison",
+  movefour: "spit",
+});
+
+const ekans = new Pokemon("Ekans", "Poison", 5, {
+  moveone: "bite",
+  movetwo: "coil",
+  movethree: "poison",
+  movefour: "spit",
+});
+
+const pokemons = [charmander, arbok, ekans];
+
+//#endregion
+
 const grid = document.querySelector(".grid");
 const cells = [];
 const width = 15;
-let currentMap = 2;
-let wildEnemy = 5;
 
 //#region music
 const themeMusic = document.querySelector("#theme_music");
@@ -91,6 +131,8 @@ const map5 = [
 //#endregion
 
 //#region draw maps and game
+
+let currentMap = 2;
 
 // draw the first map in the game
 function createGrid() {
@@ -378,6 +420,7 @@ run.addEventListener("click", function () {
 //#region Random chance to encounter enemy
 // roll dice to see random enemy
 let diceRoll;
+let wildEnemy = 5;
 let rollDice = () => Math.floor(Math.random() * 10);
 
 // check for enemy in grass
@@ -393,43 +436,10 @@ function checkForPlayer() {
     }
     battle.showModal();
     battle.classList.add("in_battle");
+    newEnemy();
   }
 }
 //#endregion
-
-//#region Pokemon Index
-class Pokemon {
-  constructor(name, type, level, moves) {
-    this.name = name;
-    this.type = type;
-    this.level = level;
-    this.moves = moves;
-  }
-}
-
-const charmander = new Pokemon("Charmander", "Fire", 12, {
-  moveone: "scratch",
-  movetwo: "burn",
-  movethree: "shield",
-  movefour: "blast",
-});
-
-const arbok = new Pokemon("Arbok", "Snake", 8, {
-  moveone: "bite",
-  movetwo: "coil",
-  movethree: "poison",
-  movefour: "spit",
-});
-
-const ekans = new Pokemon("Ekans", "Poison", 5, {
-  moveone: "bite",
-  movetwo: "coil",
-  movethree: "poison",
-  movefour: "spit",
-});
-//#endregion
-
-const pokemons = [charmander, arbok, ekans];
 
 const move = document.querySelectorAll(".move");
 const option = document.querySelectorAll(".option");
@@ -455,8 +465,8 @@ option.forEach((option) => {
 });
 //#endregion
 
-let currentEnemy;
 let enemyHealth = 100;
+const narration = document.querySelector(".narration");
 
 //#region items
 
@@ -502,5 +512,97 @@ pokemonReturn.addEventListener("mouseover", () =>
 pokemonReturn.addEventListener("mouseout", () =>
   pokemonReturn.classList.remove("hover")
 );
+
+//Change Pokemon
+pokemon.forEach((pokemon) =>
+  pokemon.addEventListener("click", function () {
+    if (pokemon.classList.contains("pikachu")) {
+      myPokemon = pikachu;
+    } else if (pokemon.classList.contains("charmander")) {
+      myPokemon = charmander;
+    }
+    switchMyPokemon();
+    pokemonListMenu.close();
+  })
+);
+
+//#endregion
+
+//#region battle page
+
+//#region input character info
+const playerName = document.querySelector("#player_name");
+const playerType = document.querySelector("#player_type");
+const playerLevel = document.querySelector("#player_level");
+const playerLevelUp = document.querySelector("#player_level_up");
+const playerHealth = document.querySelector("#health");
+const moveone = document.querySelector("#moveone");
+const movetwo = document.querySelector("#movetwo");
+const movethree = document.querySelector("#movethree");
+const movefour = document.querySelector("#movefour");
+let myPokemon = pikachu;
+switchMyPokemon();
+function switchMyPokemon() {
+  playerName.textContent = myPokemon.name;
+  playerType.textContent = myPokemon.type;
+  playerLevel.textContent = myPokemon.level;
+  moveone.textContent = myPokemon.moves.moveone;
+  movetwo.textContent = myPokemon.moves.movetwo;
+  movethree.textContent = myPokemon.moves.movethree;
+  movefour.textContent = myPokemon.moves.movefour;
+}
+
+// input enemy info
+
+const enemyName = document.querySelector("#enemy_name");
+const enemyType = document.querySelector("#enemy_type");
+const enemyLevel = document.querySelector("#enemy_level");
+const enemyHealthText = document.querySelector("#enemy_health");
+function newEnemy() {
+  let randomEnemy = () => Math.floor(Math.random() * pokemons.length);
+  let currentEnemy;
+  currentEnemy = pokemons[randomEnemy()];
+  enemyHealth = 100;
+  enemyName.textContent = currentEnemy.name;
+  enemyType.textContent = currentEnemy.type;
+  enemyLevel.textContent = currentEnemy.level;
+  enemyHealthText.textContent = `${enemyHealth}/100`;
+}
+
+//#endregion
+
+//#region battle gameplay
+
+move.forEach((move) =>
+  move.addEventListener("click", function () {
+    switch (move) {
+      case moveone:
+        enemyHealth -= 10;
+        narration.textContent = `pikachu used ${moveone.textContent}!`;
+
+        break;
+      case movetwo:
+        enemyHealth -= 20;
+        narration.textContent = `pikachu used ${movetwo.textContent}!`;
+
+        break;
+      case movethree:
+        enemyHealth -= 30;
+        narration.textContent = `pikachu used ${movethree.textContent}!`;
+        break;
+      case movefour:
+        narration.textContent = `pikachu used ${movefour.textContent}!`;
+        break;
+    }
+    enemyHealthText.textContent = `${enemyHealth}/100`;
+    enemyTurn();
+  })
+);
+
+function enemyTurn() {
+  const dice = Math.floor(Math.random() * 4);
+}
+
+//#endregion
 
 //#endregion
