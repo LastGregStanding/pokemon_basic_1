@@ -1,4 +1,24 @@
 "use strict";
+//#region Music
+const themeMusic = document.querySelector("#theme_music");
+const battleMusic = document.querySelector("#battle_music");
+let mute = true;
+
+// trigger music
+document.addEventListener("keydown", function (key) {
+  switch (key.keyCode) {
+    // key 'm' to unmute
+    case 77:
+      mute = mute === true ? false : true;
+      themeMusic.play();
+      break;
+    // key 'q' to mute
+    case 81:
+      themeMusic.pause();
+      break;
+  }
+});
+//#endregion
 
 //#region Pokemon Index
 class Pokemon {
@@ -42,32 +62,9 @@ const pokemons = [charmander, arbok, ekans];
 
 //#endregion
 
-const grid = document.querySelector(".grid");
-const cells = [];
-const width = 15;
+//#region Draw Maps & Game details
 
-//#region music
-const themeMusic = document.querySelector("#theme_music");
-const battleMusic = document.querySelector("#battle_music");
-let mute = true;
-
-// trigger music
-document.addEventListener("keydown", function (key) {
-  switch (key.keyCode) {
-    // key 'm' to unmute
-    case 77:
-      mute = mute === true ? false : true;
-      themeMusic.play();
-      break;
-    // key 'q' to mute
-    case 81:
-      themeMusic.pause();
-      break;
-  }
-});
-//#endregion
-
-//#region map layouts
+//#region Map Layouts
 
 const map1 = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -130,8 +127,9 @@ const map5 = [
 ];
 //#endregion
 
-//#region draw maps and game
-
+const grid = document.querySelector(".grid");
+const cells = [];
+const width = 15;
 let currentMap = 2;
 
 // draw the first map in the game
@@ -281,8 +279,6 @@ function drawNextMap() {
     }
   }
 }
-//#endregion
-
 //#region draw player
 let playerIndex = 160;
 function drawPlayer() {
@@ -296,8 +292,9 @@ function erasePlayer() {
 }
 cells[playerIndex].classList.add("front");
 //#endregion
+//#endregion
 
-//#region Main Gameplay
+//#region Move Player & Encounter Enemy in Grass
 document.addEventListener("keydown", function (key) {
   // Move player around map with keys (and switch maps)
   switch (key.keyCode) {
@@ -415,7 +412,6 @@ run.addEventListener("click", function () {
   }
 });
 //#endregion
-// #endregion
 
 //#region Random chance to encounter enemy
 // roll dice to see random enemy
@@ -441,11 +437,14 @@ function checkForPlayer() {
 }
 //#endregion
 
+// #endregion
+
+//#region UI Hover over Words
+
 const move = document.querySelectorAll(".move");
 const option = document.querySelectorAll(".option");
 const battle = document.querySelector(".battle_container");
 
-//#region UI hovering
 move.forEach((move) => {
   move.addEventListener("mouseover", function () {
     move.classList.add("hover");
@@ -465,10 +464,7 @@ option.forEach((option) => {
 });
 //#endregion
 
-let enemyHealth = 100;
-const narration = document.querySelector(".narration");
-
-//#region items
+//#region Item List
 
 const itemListMenu = document.querySelector(".item-list-menu");
 const item = document.querySelectorAll(".item");
@@ -492,7 +488,7 @@ itemReturn.addEventListener("click", () => itemListMenu.close());
 
 //#endregion
 
-//#region pokemon list
+//#region Pokemon List
 const pokemonListMenu = document.querySelector(".pokemon-list-menu");
 const switchPokemon = document.querySelector("#switch_pokemon");
 const pokemonReturn = document.querySelector(".pokemon-return");
@@ -501,6 +497,7 @@ const pokemon = document.querySelectorAll(".pokemon");
 switchPokemon.addEventListener("click", () => pokemonListMenu.showModal());
 pokemonReturn.addEventListener("click", () => pokemonListMenu.close());
 
+// Hover Over Pokemon Words
 pokemon.forEach((pokemon) => {
   pokemon.addEventListener("mouseover", () => pokemon.classList.add("hover"));
   pokemon.addEventListener("mouseout", () => pokemon.classList.remove("hover"));
@@ -513,7 +510,7 @@ pokemonReturn.addEventListener("mouseout", () =>
   pokemonReturn.classList.remove("hover")
 );
 
-//Change Pokemon
+// Change Pokemon
 pokemon.forEach((pokemon) =>
   pokemon.addEventListener("click", function () {
     if (pokemon.classList.contains("pikachu")) {
@@ -553,7 +550,7 @@ function switchMyPokemon() {
 }
 
 // input enemy info
-
+let enemyHealth = 100;
 const enemyName = document.querySelector("#enemy_name");
 const enemyType = document.querySelector("#enemy_type");
 const enemyLevel = document.querySelector("#enemy_level");
@@ -572,6 +569,8 @@ function newEnemy() {
 //#endregion
 
 //#region battle gameplay
+
+const narration = document.querySelector(".narration");
 
 move.forEach((move) =>
   move.addEventListener("click", function () {
