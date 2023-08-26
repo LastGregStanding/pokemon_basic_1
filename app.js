@@ -577,20 +577,20 @@ move.forEach((move) =>
     switch (move) {
       case moveone:
         enemyHealth -= 10;
-        narration.textContent = `pikachu used ${moveone.textContent}!`;
+        narration.textContent = `${myPokemon.name} used ${moveone.textContent}!`;
 
         break;
       case movetwo:
         enemyHealth -= 20;
-        narration.textContent = `pikachu used ${movetwo.textContent}!`;
+        narration.textContent = `${myPokemon.name} used ${movetwo.textContent}!`;
 
         break;
       case movethree:
         enemyHealth -= 30;
-        narration.textContent = `pikachu used ${movethree.textContent}!`;
+        narration.textContent = `${myPokemon.name} used ${movethree.textContent}!`;
         break;
       case movefour:
-        narration.textContent = `pikachu used ${movefour.textContent}!`;
+        narration.textContent = `${myPokemon.name} used ${movefour.textContent}!`;
         break;
     }
     enemyHealthText.textContent = `${enemyHealth}/100`;
