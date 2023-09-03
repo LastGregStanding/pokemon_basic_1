@@ -320,6 +320,7 @@ document.addEventListener("keydown", function (key) {
         if (cells[playerIndex].classList.contains("water")) {
           playerIndex++;
         }
+        // Player design looks left
         cells[playerIndex].classList.add("left");
       }
       break;
@@ -346,6 +347,7 @@ document.addEventListener("keydown", function (key) {
         if (cells[playerIndex].classList.contains("water")) {
           playerIndex--;
         }
+        // Player design looks right
         cells[playerIndex].classList.add("right");
       }
       break;
@@ -355,9 +357,8 @@ document.addEventListener("keydown", function (key) {
       if (!battle.classList.contains("in_battle")) {
         erasePlayer();
         playerIndex += width;
-
-        // Map 2 > 3
         if (playerIndex >= 225 && currentMap === 2) {
+          // Map 2 > 3
           currentMap = 3;
           drawNextMap();
           playerIndex -= 225;
@@ -368,6 +369,10 @@ document.addEventListener("keydown", function (key) {
           drawNextMap();
           playerIndex -= 225;
         }
+        if (cells[playerIndex].classList.contains("water")) {
+          playerIndex -= width;
+        }
+        // Player design looks down
         cells[playerIndex].classList.add("front");
       }
       break;
@@ -390,6 +395,7 @@ document.addEventListener("keydown", function (key) {
           drawNextMap();
           playerIndex += 225;
         }
+        // Player design looks backwards
         cells[playerIndex].classList.add("back");
       }
       break;
