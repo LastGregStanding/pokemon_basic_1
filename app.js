@@ -395,6 +395,9 @@ document.addEventListener("keydown", function (key) {
           drawNextMap();
           playerIndex += 225;
         }
+        if (cells[playerIndex].classList.contains("water")) {
+          playerIndex += width;
+        }
         // Player design looks backwards
         cells[playerIndex].classList.add("back");
       }
