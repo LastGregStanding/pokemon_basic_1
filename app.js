@@ -300,107 +300,103 @@ document.addEventListener("keydown", function (key) {
   switch (key.keyCode) {
     // Move left: A key
     case 65:
-      if (!battle.classList.contains("in_battle")) {
-        // Map 2 > 5
-        if (playerIndex % width === 0 && currentMap === 2) {
-          currentMap = 5;
-          drawNextMap();
-          erasePlayer();
-          playerIndex += width;
-        }
-        // Map 4 > 2
-        if (playerIndex % width === 0 && currentMap === 4) {
-          currentMap = 2;
-          drawNextMap();
-          erasePlayer();
-          playerIndex += width;
-        }
+      // Map 2 > 5
+      if (playerIndex % width === 0 && currentMap === 2) {
+        currentMap = 5;
+        drawNextMap();
         erasePlayer();
-        playerIndex--;
-        if (cells[playerIndex].classList.contains("water")) {
-          playerIndex++;
-        }
-        // Player design looks left
-        cells[playerIndex].classList.add("left");
+        playerIndex += width;
       }
+      // Map 4 > 2
+      if (playerIndex % width === 0 && currentMap === 4) {
+        currentMap = 2;
+        drawNextMap();
+        erasePlayer();
+        playerIndex += width;
+      }
+      erasePlayer();
+      playerIndex--;
+      if (cells[playerIndex].classList.contains("water")) {
+        playerIndex++;
+      }
+      // Player design looks left
+      cells[playerIndex].classList.add("left");
+
       break;
 
     // Move right: D key
     case 68:
-      if (!battle.classList.contains("in_battle")) {
-        // Map 2 > 4, middle to right map
-        if ((playerIndex + 1) % width === 0 && currentMap === 2) {
-          currentMap = 4;
-          drawNextMap();
-          erasePlayer();
-          playerIndex -= width;
-        }
-        // Map 5 > 2
-        if ((playerIndex + 1) % width === 0 && currentMap === 5) {
-          currentMap = 2;
-          drawNextMap();
-          erasePlayer();
-          playerIndex -= width;
-        }
+      // Map 2 > 4, middle to right map
+      if ((playerIndex + 1) % width === 0 && currentMap === 2) {
+        currentMap = 4;
+        drawNextMap();
         erasePlayer();
-        playerIndex++;
-        if (cells[playerIndex].classList.contains("water")) {
-          playerIndex--;
-        }
-        // Player design looks right
-        cells[playerIndex].classList.add("right");
+        playerIndex -= width;
       }
+      // Map 5 > 2
+      if ((playerIndex + 1) % width === 0 && currentMap === 5) {
+        currentMap = 2;
+        drawNextMap();
+        erasePlayer();
+        playerIndex -= width;
+      }
+      erasePlayer();
+      playerIndex++;
+      if (cells[playerIndex].classList.contains("water")) {
+        playerIndex--;
+      }
+      // Player design looks right
+      cells[playerIndex].classList.add("right");
+
       break;
 
     // Move down: S key
     case 83:
-      if (!battle.classList.contains("in_battle")) {
-        erasePlayer();
-        playerIndex += width;
-        if (playerIndex >= 225 && currentMap === 2) {
-          // Map 2 > 3
-          currentMap = 3;
-          drawNextMap();
-          playerIndex -= 225;
+      erasePlayer();
+      playerIndex += width;
+      if (playerIndex >= 225 && currentMap === 2) {
+        // Map 2 > 3
+        currentMap = 3;
+        drawNextMap();
+        playerIndex -= 225;
 
-          // Map 1 > 2
-        } else if (playerIndex >= 225 && currentMap === 1) {
-          currentMap = 2;
-          drawNextMap();
-          playerIndex -= 225;
-        }
-        if (cells[playerIndex].classList.contains("water")) {
-          playerIndex -= width;
-        }
-        // Player design looks down
-        cells[playerIndex].classList.add("front");
+        // Map 1 > 2
+      } else if (playerIndex >= 225 && currentMap === 1) {
+        currentMap = 2;
+        drawNextMap();
+        playerIndex -= 225;
       }
+      if (cells[playerIndex].classList.contains("water")) {
+        playerIndex -= width;
+      }
+      // Player design looks down
+      cells[playerIndex].classList.add("front");
+
       break;
 
     // Move up: W key
     case 87:
-      if (!battle.classList.contains("in_battle")) {
-        erasePlayer();
-        playerIndex -= width;
+      erasePlayer();
+      playerIndex -= width;
 
-        // Map 2 > 1
-        if (playerIndex < 0 && currentMap === 2) {
-          currentMap = 1;
-          drawNextMap();
-          playerIndex += 225;
+      // Map 2 > 1
+      if (playerIndex < 0 && currentMap === 2) {
+        currentMap = 1;
+        drawNextMap();
+        playerIndex += 225;
 
-          // Map 3 > 2
-        } else if (playerIndex <= 0 && currentMap === 3) {
-          currentMap = 2;
-          drawNextMap();
-          playerIndex += 225;
-        }
-        if (cells[playerIndex].classList.contains("water")) {
-          playerIndex += width;
-        }
-        // Player design looks backwards
-        cells[playerIndex].classList.add("back");
+        // Map 3 > 2
+      } else if (playerIndex <= 0 && currentMap === 3) {
+        currentMap = 2;
+        drawNextMap();
+        playerIndex += 225;
       }
+      if (cells[playerIndex].classList.contains("water")) {
+        playerIndex += width;
+      }
+      // Player design looks backwards
+      cells[playerIndex].classList.add("back");
+
       break;
   }
   // Roll dice for wild enemy after every step in the grass
@@ -447,170 +443,3 @@ function checkForPlayer() {
 //#endregion
 
 // #endregion
-
-//#region UI Hover over Words
-
-const move = document.querySelectorAll(".move");
-const option = document.querySelectorAll(".option");
-const battle = document.querySelector(".battle_container");
-
-move.forEach((move) => {
-  move.addEventListener("mouseover", function () {
-    move.classList.add("hover");
-  });
-  move.addEventListener("mouseout", function () {
-    move.classList.remove("hover");
-  });
-});
-
-option.forEach((option) => {
-  option.addEventListener("mouseover", function () {
-    option.classList.add("hover");
-  });
-  option.addEventListener("mouseout", function () {
-    option.classList.remove("hover");
-  });
-});
-//#endregion
-
-//#region Item List
-
-const itemListMenu = document.querySelector(".item-list-menu");
-const item = document.querySelectorAll(".item");
-const itemsBattle = document.querySelector("#items");
-const itemReturn = document.querySelector(".item-return");
-
-item.forEach((item) => {
-  item.addEventListener("mouseover", () => item.classList.add("hover"));
-  item.addEventListener("mouseout", () => item.classList.remove("hover"));
-});
-
-itemReturn.addEventListener("mouseover", () =>
-  itemReturn.classList.add("hover")
-);
-itemReturn.addEventListener("mouseout", () =>
-  itemReturn.classList.remove("hover")
-);
-
-itemsBattle.addEventListener("click", () => itemListMenu.showModal());
-itemReturn.addEventListener("click", () => itemListMenu.close());
-
-//#endregion
-
-//#region Pokemon List
-const pokemonListMenu = document.querySelector(".pokemon-list-menu");
-const switchPokemon = document.querySelector("#switch_pokemon");
-const pokemonReturn = document.querySelector(".pokemon-return");
-const pokemon = document.querySelectorAll(".pokemon");
-
-switchPokemon.addEventListener("click", () => pokemonListMenu.showModal());
-pokemonReturn.addEventListener("click", () => pokemonListMenu.close());
-
-// Hover Over Pokemon Words
-pokemon.forEach((pokemon) => {
-  pokemon.addEventListener("mouseover", () => pokemon.classList.add("hover"));
-  pokemon.addEventListener("mouseout", () => pokemon.classList.remove("hover"));
-});
-
-pokemonReturn.addEventListener("mouseover", () =>
-  pokemonReturn.classList.add("hover")
-);
-pokemonReturn.addEventListener("mouseout", () =>
-  pokemonReturn.classList.remove("hover")
-);
-
-// Change Pokemon
-pokemon.forEach((pokemon) =>
-  pokemon.addEventListener("click", function () {
-    if (pokemon.classList.contains("pikachu")) {
-      myPokemon = pikachu;
-    } else if (pokemon.classList.contains("charmander")) {
-      myPokemon = charmander;
-    }
-    switchMyPokemon();
-    pokemonListMenu.close();
-  })
-);
-
-//#endregion
-
-//#region battle page
-
-//#region input character info
-const playerName = document.querySelector("#player_name");
-const playerType = document.querySelector("#player_type");
-const playerLevel = document.querySelector("#player_level");
-const playerLevelUp = document.querySelector("#player_level_up");
-const playerHealth = document.querySelector("#health");
-const moveone = document.querySelector("#moveone");
-const movetwo = document.querySelector("#movetwo");
-const movethree = document.querySelector("#movethree");
-const movefour = document.querySelector("#movefour");
-let myPokemon = pikachu;
-switchMyPokemon();
-function switchMyPokemon() {
-  playerName.textContent = myPokemon.name;
-  playerType.textContent = myPokemon.type;
-  playerLevel.textContent = myPokemon.level;
-  moveone.textContent = myPokemon.moves.moveone;
-  movetwo.textContent = myPokemon.moves.movetwo;
-  movethree.textContent = myPokemon.moves.movethree;
-  movefour.textContent = myPokemon.moves.movefour;
-}
-
-// input enemy info
-let enemyHealth = 100;
-const enemyName = document.querySelector("#enemy_name");
-const enemyType = document.querySelector("#enemy_type");
-const enemyLevel = document.querySelector("#enemy_level");
-const enemyHealthText = document.querySelector("#enemy_health");
-function newEnemy() {
-  let randomEnemy = () => Math.floor(Math.random() * pokemons.length);
-  let currentEnemy;
-  currentEnemy = pokemons[randomEnemy()];
-  enemyHealth = 100;
-  enemyName.textContent = currentEnemy.name;
-  enemyType.textContent = currentEnemy.type;
-  enemyLevel.textContent = currentEnemy.level;
-  enemyHealthText.textContent = `${enemyHealth}/100`;
-}
-
-//#endregion
-
-//#region battle gameplay
-
-const narration = document.querySelector(".narration");
-
-move.forEach((move) =>
-  move.addEventListener("click", function () {
-    switch (move) {
-      case moveone:
-        enemyHealth -= 10;
-        narration.textContent = `${myPokemon.name} used ${moveone.textContent}!`;
-
-        break;
-      case movetwo:
-        enemyHealth -= 20;
-        narration.textContent = `${myPokemon.name} used ${movetwo.textContent}!`;
-
-        break;
-      case movethree:
-        enemyHealth -= 30;
-        narration.textContent = `${myPokemon.name} used ${movethree.textContent}!`;
-        break;
-      case movefour:
-        narration.textContent = `${myPokemon.name} used ${movefour.textContent}!`;
-        break;
-    }
-    enemyHealthText.textContent = `${enemyHealth}/100`;
-    enemyTurn();
-  })
-);
-
-function enemyTurn() {
-  const dice = Math.floor(Math.random() * 4);
-}
-
-//#endregion
-
-//#endregion
