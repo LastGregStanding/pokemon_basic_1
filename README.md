@@ -11,3 +11,9 @@ creating a basic pokemon game
 -Having trouble changing the maps to the left and right. As of now, I have the up and down maps working properly.
 
 -Bug: cannot figure out how to prevent going into the water when moving up or down, while also being able to switch maps for up and down
+
+9/13/23
+
+-changing the entire battle game, now that I have gotten better with CSS
+
+-need to figure out how to keep the game a perfect square, regardless of how someone shapes the window.
