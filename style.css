@@ -20,6 +20,8 @@ html {
   position: absolute;
   top: 25%;
   left: 25%;
+  min-height: 350px;
+  min-width: 450px;
 }
 
 .cell {
@@ -57,4 +59,76 @@ html {
 }
 .back {
   background-image: url(pokemon/ash_back.png);
+}
+
+.battle-modal {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  background-color: grey;
+  top: 12.5%;
+  left: 12.5%;
+  display: grid;
+  grid-template-rows: 55% 35% 10%;
+}
+
+.battle-modal section {
+  border: solid blue 1px;
+}
+
+.battle-nav {
+  list-style: none;
+  color: black;
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  top: 5px;
+}
+
+.battle-nav li:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.user-info {
+  color: black;
+}
+.user-info div {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.battle-top-section {
+  display: flex;
+  flex-grow: 1;
+}
+
+.battle-img {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+}
+
+#user-img {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 50%;
+  width: 60%;
+}
+
+#enemy-img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 50%;
+  width: 60%;
 }
