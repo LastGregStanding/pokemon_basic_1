@@ -73,7 +73,7 @@ html {
 }
 
 .battle-modal section {
-  border: solid blue 1px;
+  /* border: solid blue 1px; */
 }
 
 .battle-nav {
@@ -131,4 +131,40 @@ img {
   right: 0px;
   height: 50%;
   width: 60%;
+}
+
+.battle-middle-section {
+  color: black;
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.moves {
+  list-style: none;
+}
+
+.moves li {
+  margin-left: 1rem;
+  margin-top: 0.15rem;
+}
+
+.moves header {
+  margin-left: 1rem;
+  text-decoration: underline;
+}
+
+.moves li:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.narration-box {
+  border: black 1px solid;
+  margin: 1rem;
+  text-align: center;
+}
+
+.narration-box p {
+  position: relative;
+  top: 30%;
 }
