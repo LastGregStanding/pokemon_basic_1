@@ -70,6 +70,8 @@ html {
   left: 12.5%;
   display: grid;
   grid-template-rows: 55% 35% 10%;
+  border: black solid 3px;
+  border-radius: 10px;
 }
 
 .battle-modal section {
@@ -110,6 +112,7 @@ html {
   position: relative;
   display: flex;
   flex-grow: 1;
+  margin: 0.5rem 0rem;
 }
 
 img {
