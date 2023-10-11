@@ -400,22 +400,22 @@ document.addEventListener("keydown", function (key) {
       break;
   }
   // Roll dice for wild enemy after every step in the grass
-  diceRoll = rollDice();
-  checkForPlayer();
+  // diceRoll = rollDice();
+  // checkForPlayer();
 });
 
 //#region run from enemy
-const run = document.querySelector("#run");
-run.addEventListener("click", function () {
-  battleMusic.currentTime = 0;
-  themeMusic.currentTime = 0;
-  battle.classList.remove("in_battle");
-  battle.close();
-  if (mute === false) {
-    battleMusic.pause();
-    themeMusic.play();
-  }
-});
+// const run = document.querySelector("#run");
+// run.addEventListener("click", function () {
+//   battleMusic.currentTime = 0;
+//   themeMusic.currentTime = 0;
+//   battle.classList.remove("in_battle");
+//   battle.close();
+//   if (mute === false) {
+//     battleMusic.pause();
+//     themeMusic.play();
+//   }
+// });
 //#endregion
 
 //#region Random chance to encounter enemy
@@ -443,3 +443,9 @@ function checkForPlayer() {
 //#endregion
 
 // #endregion
+
+const myItems = document.getElementById("switch-item-btn");
+const myItemModal = document.getElementById("my-items");
+myItems.addEventListener("click", function () {
+  myItemModal.showModal();
+});

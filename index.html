@@ -21,79 +21,107 @@
 
     <main>
       <div class="grid">
-        <div class="battle-modal">
-          <section class="battle-top-section">
-            <div class="user-info">
-              <div>
-                <p>Player 1</p>
+        <div class="pop-up-game-screens">
+          <dialog open class="battle-modal">
+            <section class="battle-top-section">
+              <div class="user-info">
+                <div class="user-info-text">
+                  <p>Player 1</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Name:</p>
+                  <p id="user-name">Pikachu</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Type:</p>
+                  <p id="user-type">Electric</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Level</p>
+                  <p id="user-level">10</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Health:</p>
+                  <p id="user-health">50/100</p>
+                </div>
               </div>
-              <div>
-                <p>Name:</p>
-                <p id="user-name">Pikachu</p>
+              <div class="battle-img-section">
+                <div id="user-img">
+                  <img
+                    src="pokemon/pikachu.png"
+                    alt="pikachu"
+                    class="battle-img"
+                  />
+                </div>
+                <div id="enemy-img">
+                  <img src="pokemon/arbok.png" alt="arbok" class="battle-img" />
+                </div>
               </div>
-              <div>
-                <p>Type:</p>
-                <p id="user-type">Electric</p>
+              <div class="user-info">
+                <div class="user-info-text">
+                  <p>Enemy</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Name:</p>
+                  <p id="enemy-name">Arbok</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Type:</p>
+                  <p id="enemy-type">Poison</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Level</p>
+                  <p id="enemy-level">10</p>
+                </div>
+                <div class="user-info-text">
+                  <p>Health:</p>
+                  <p id="enemy-health">50/100</p>
+                </div>
               </div>
-              <div>
-                <p>Level</p>
-                <p id="user-level">10</p>
+            </section>
+            <section class="battle-middle-section">
+              <nav>
+                <ul class="moves">
+                  <header>Moves</header>
+                  <li>Quick attack</li>
+                  <li>Spark</li>
+                  <li>Thunder</li>
+                  <li>Reflex</li>
+                </ul>
+              </nav>
+              <div class="narration-box">
+                <p>What will pikachu do?</p>
               </div>
-              <div>
-                <p>Health:</p>
-                <p id="user-health">50/100</p>
-              </div>
-            </div>
-            <div class="battle-img">
-              <img src="pokemon/pikachu.png" alt="pikachu" id="user-img" />
-              <img src="pokemon/arbok.png" alt="arbok" id="enemy-img" />
-            </div>
-            <div class="user-info">
-              <div>
-                <p>Enemy</p>
-              </div>
-              <div>
-                <p>Name:</p>
-                <p id="enemy-name">Arbok</p>
-              </div>
-              <div>
-                <p>Type:</p>
-                <p id="enemy-type">Poison</p>
-              </div>
-              <div>
-                <p>Level</p>
-                <p id="enemy-level">10</p>
-              </div>
-              <div>
-                <p>Health:</p>
-                <p id="enemy-health">50/100</p>
-              </div>
-            </div>
-          </section>
-          <section class="battle-middle-section">
-            <nav>
-              <ul class="moves">
-                <header>Moves</header>
-                <li>Quick attack</li>
-                <li>Spark</li>
-                <li>Thunder</li>
-                <li>Reflex</li>
-              </ul>
-            </nav>
-            <div class="narration-box">
-              <p>What will pikachu do?</p>
-            </div>
-          </section>
-          <section>
-            <nav>
-              <ul class="battle-nav">
-                <li>Switch Pokemon</li>
-                <li>Items</li>
-                <li>Capture</li>
-                <li>Run</li>
-              </ul>
-            </nav>
-          </section>
+            </section>
+            <section class="battle-bottom-section">
+              <nav>
+                <ul class="battle-bottom-nav-options">
+                  <li id="switch-pokemon-btn">Switch Pokemon</li>
+                  <li id="switch-item-btn">Items</li>
+                  <li id="capture-btn">Capture</li>
+                  <li id="run-btn">Run</li>
+                </ul>
+              </nav>
+            </section>
+          </dialog>
+
+          <dialog class="mini-modal" id="my-pokemon">
+            <ul>
+              <header>My Pokemon</header>
+              <li>Pikachu</li>
+              <li>Charmander</li>
+            </ul>
+            <footer>Exit</footer>
+          </dialog>
+
+          <dialog class="mini-modal" id="my-items">
+            <ul>
+              <header>Items</header>
+              <li>PokeBalls</li>
+              <li>Elixers</li>
+            </ul>
+            <footer>Exit</footer>
+          </dialog>
         </div>
       </div>
     </main>
